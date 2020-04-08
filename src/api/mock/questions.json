@@ -1,0 +1,179 @@
+{
+  "questions": [
+    {
+      "Seq_No": 2,
+      "Question_Type": "B",
+      "Question_Desc": "工号",
+      "Rid": "5F4DBF50-A5C7-4405-BE3B-21B4CA65A273",
+      "Answer_Desc": "工号",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 3,
+      "Question_Type": "B",
+      "Question_Desc": "您的姓名",
+      "Rid": "5F4CDF50-A5C7-4405-BE3B-21B4CA65A673",
+      "Answer_Desc": "姓名",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 4,
+      "Question_Type": "B",
+      "Question_Desc": "您的身份证号码",
+      "Rid": "5F4DBF50-A5B7-4405-BE3B-21B4CA65A271",
+      "Answer_Desc": "身份证号",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 5,
+      "Question_Type": "B",
+      "Question_Desc": "手机号码",
+      "Rid": "7140F452-CA95-46CA-B2E1-68E86FBBE3B8",
+      "Answer_Desc": "手机号码",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 6,
+      "Question_Type": "E",
+      "Question_Desc": "您的籍贯",
+      "Rid": "95026511-5783-4C39-A1A9-4C572B2E2C5F",
+      "Answer_Desc": "籍贯",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 7,
+      "Question_Type": "A",
+      "Question_Desc": "近期14天是否去过浙江温州、武汉及湖北省其它地区",
+      "Rid": "1E1C977D-0A12-4909-BC87-C4E85ACF7E94",
+      "Answer_Desc": "是",
+      "Answer_No": "A",
+      "Visible_Default": "Y",
+      "Have_Next_Level": "Y",
+      "Next_Level_Rid": "AFA662C0-C922-4E82-9822-9E3A7498D658"
+    },
+    {
+      "Seq_No": 7,
+      "Question_Type": "A",
+      "Question_Desc": "近期14天是否去过浙江温州、武汉及湖北省其它地区",
+      "Rid": "1E1C977D-0A12-4909-BC87-C4E85ACF7E94",
+      "Answer_Desc": "否",
+      "Answer_No": "B",
+      "Visible_Default": "Y",
+      "Have_Next_Level": "N",
+      "Next_Level_Rid": "AFA662C0-C922-4E82-9822-9E3A7498D658"
+    },
+    {
+      "Seq_No": 8,
+      "Question_Type": "A",
+      "Question_Desc": "最近14天内，有接触过近14天出入过浙江温州、武汉及湖北省其它地区的人员",
+      "Rid": "AFA662C0-C922-4E82-9822-9E3A7498D658",
+      "Answer_Desc": "是",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 8,
+      "Question_Type": "A",
+      "Question_Desc": "最近14天内，有接触过近14天出入过浙江温州、武汉及湖北省其它地区的人员",
+      "Rid": "AFA662C0-C922-4E82-9822-9E3A7498D658",
+      "Answer_Desc": "否",
+      "Answer_No": "B",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 9,
+      "Question_Type": "A",
+      "Question_Desc": "2月23日起至今，您或您的家人是否有到访韩国，伊朗，意大利，日本四个国家",
+      "Rid": "FADFE032-F677-4D85-BF95-D5261CE15BD6",
+      "Answer_Desc": "是",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 9,
+      "Question_Type": "A",
+      "Question_Desc": "2月23日起至今，您或您的家人是否有到访韩国，伊朗，意大利，日本四个国家",
+      "Rid": "FADFE032-F677-4D85-BF95-D5261CE15BD6",
+      "Answer_Desc": "否",
+      "Answer_No": "B",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 10,
+      "Question_Type": "E",
+      "Question_Desc": "您从何省市来莞（如您一直在东莞，请选择东莞）",
+      "Rid": "4E53399B-B3DB-4E9B-919F-89C095E1C79D",
+      "Answer_Desc": "何省来",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 11,
+      "Question_Type": "D",
+      "Question_Desc": "您到达东莞的日期（如您一直在东莞，请选择填表当日日期）",
+      "Rid": "9B93B6B3-13D2-4EF6-BE82-CE92F544A898",
+      "Answer_Desc": "来莞日期",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 12,
+      "Question_Type": "C",
+      "Question_Desc": "您是否有疑似症状",
+      "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
+      "Answer_Desc": "气促",
+      "Answer_No": "D",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 12,
+      "Question_Type": "C",
+      "Question_Desc": "您是否有疑似症状",
+      "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
+      "Answer_Desc": "健康",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 12,
+      "Question_Type": "C",
+      "Question_Desc": "您是否有疑似症状",
+      "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
+      "Answer_Desc": "体温超37.3",
+      "Answer_No": "B",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 12,
+      "Question_Type": "C",
+      "Question_Desc": "您是否有疑似症状",
+      "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
+      "Answer_Desc": "其他",
+      "Answer_No": "E",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 12,
+      "Question_Type": "C",
+      "Question_Desc": "您是否有疑似症状",
+      "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
+      "Answer_Desc": "咳嗽",
+      "Answer_No": "C",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 13,
+      "Question_Type": "B",
+      "Question_Desc": "体温",
+      "Rid": "2422F547-2D17-4469-A3D1-F7278911A89F",
+      "Answer_Desc": "体温",
+      "Answer_No": "A",
+      "Visible_Default": "N"
+    }
+  ]
+}
