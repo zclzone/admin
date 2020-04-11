@@ -18,10 +18,12 @@ const users = {
     authRoutes: [
       {
         name: 'OA系统',
+        name_en: 'OA System',
         path: '/oa'
       },
       {
         name: '印章盖印管理',
+        name_en: 'Seal Manage',
         path: '/oa/seal'
       },
       {
@@ -30,10 +32,12 @@ const users = {
       },
       {
         name: '疫情调查',
+        name_en: 'Disease Mange',
         path: '/questionaire'
       },
       {
         name: '疫情问卷',
+        name_en: 'Disease Questionnaire',
         path: '/questionaire/index'
       }
     ]

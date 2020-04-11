@@ -1,28 +1,26 @@
 <template>
-  <el-aside width="200px">
-    <el-menu :default-active="$route.path"
-             class="el-menu-vertical-demo"
-             background-color="#EBF0F2"
-             :router="true"
-             @open="handleOpen"
-             @close="handleClose"
-             :collapse="isCollapse">
-      <el-submenu v-for="(route,index) in routes"
-                  :key="index"
-                  :index="route.path">
-        <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span slot="title">{{route.meta && route.meta.title}}</span>
-        </template>
-        <el-menu-item-group v-for="item in route.children"
-                            :key="item.path">
-          <el-menu-item :index="`${route.path}/${item.path}`">
-            {{item.meta && item.meta.title}}
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-    </el-menu>
-  </el-aside>
+  <el-menu :default-active="$route.path"
+           class="el-menu-vertical-demo"
+           background-color="#EBF0F2"
+           :router="true"
+           @open="handleOpen"
+           @close="handleClose"
+           :collapse="isCollapse">
+    <el-submenu v-for="(route,index) in routes"
+                :key="index"
+                :index="route.path">
+      <template slot="title">
+        <i class="el-icon-menu"></i>
+        <span slot="title">{{route.meta && route.meta.title}}</span>
+      </template>
+      <el-menu-item-group v-for="item in route.children"
+                          :key="item.path">
+        <el-menu-item :index="`${route.path}/${item.path}`">
+          {{item.meta && item.meta.title}}
+        </el-menu-item>
+      </el-menu-item-group>
+    </el-submenu>
+  </el-menu>
 </template>
 
 <script>

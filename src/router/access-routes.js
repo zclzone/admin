@@ -9,7 +9,7 @@ const routes = [
       {
         FunctionID: 'seal',
         FunctionName: '印章盖印管理',
-        view: _ => import('@/views/function1')
+        view: _ => import('@/views/seal')
       },
       {
         FunctionID: 'function2',

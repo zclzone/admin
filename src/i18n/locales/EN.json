@@ -1,0 +1,8 @@
+{
+  "message": {
+    "hello{name}": "Hello world--{name}",
+    "selectLang": "Languages",
+    "projectName": "Admin",
+    "home": "Home"
+  }
+}

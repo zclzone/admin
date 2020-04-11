@@ -1,0 +1,8 @@
+{
+  "message": {
+    "hello{name}": "你好世界--{name}",
+    "selectLang": "选择语言",
+    "projectName": "后台管理",
+    "home": "首页"
+  }
+}

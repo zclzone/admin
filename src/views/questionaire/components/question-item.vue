@@ -138,14 +138,28 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ques-item {
   padding: 10px 0;
 
   h3 {
-    font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
+    color: #364560;
+    font-weight: 600;
     margin-bottom: 10px;
+  }
+  .el-radio,
+  .el-checkbox {
+    line-height: 30px;
+    span {
+      font-size: 16px;
+    }
+  }
+  .el-input {
+    max-width: 240px;
+  }
+  .el-input__inner {
+    font-size: 16px;
   }
 
   .err-msg {
@@ -153,3 +167,4 @@ export default {
   }
 }
 </style>
+

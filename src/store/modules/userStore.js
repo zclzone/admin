@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/cookie-util'
+import { getToken, setToken, removeToken, setLang } from '@/utils/cookie-util'
 import { resetRouter } from '@/router'
 
 const state = {
@@ -34,13 +34,14 @@ const mutations = {
 
 const actions = {
   login ({ commit, state }, userInfo) {
-    const { username, password } = userInfo
+    const { username, password, lang } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username, password: password }).then(res => {
+      login({ username, password, lang }).then(res => {
         const { data } = res
         if (data.token) {
           commit('SET_TOKEN', data.token)
           setToken(data.token)
+          setLang(lang || 'CN')
           resolve()
         } else {
           reject(data.message)
@@ -57,11 +58,8 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
+        //刷新token
         const { roles, name, avatar, introduction, authRoutes } = data
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
         commit('SET_NAME', name)
         commit('SET_ROLES', roles)
         commit('SET_INTRODUCTION', introduction)
@@ -75,13 +73,13 @@ const actions = {
   },
   logout ({ state, commit }) {
     return new Promise(resolve => {
-      logout(state.token).then(() => {
+      logout(state.token).then((res) => {
         commit('SET_TOKEN', '')
         commit('SET_NAME', '')
         commit('SET_ROLES', [])
         removeToken()
         resetRouter()
-        resolve()
+        resolve(res.data)
       })
     })
   },

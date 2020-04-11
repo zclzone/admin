@@ -1,11 +1,11 @@
 <template>
-  <el-main>
+  <div class="main-container">
     <bread-crumb :breadItems="breadItems" />
     <transition name="slide-fade"
                 mode="out-in">
       <router-view />
     </transition>
-  </el-main>
+  </div>
 </template>
 
 <script>
@@ -47,11 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-main {
-  margin: 0;
-  height: calc(100vh - 40px);
-  border-top: 5px solid #e6edef;
-  border-right: 5px solid #e6edef;
+.main-container {
+  height: 100%;
+  width: 100%;
   .slide-fade-enter-active {
     transition: all 0.8s ease;
   }

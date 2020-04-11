@@ -3,7 +3,6 @@
     <section class="form">
       <h1>Login</h1>
       <div class="item">
-        <i></i>
         <input type="text"
                tabindex="1"
                ref="username"
@@ -11,12 +10,17 @@
                placeholder="username">
       </div>
       <div class="item">
-        <i></i>
         <input type="password"
                tabindex="2"
                ref="password"
                v-model="loginForm.password"
                placeholder="password">
+      </div>
+      <div class="item">
+        <el-radio v-model="loginForm.lang"
+                  label="CN">CN</el-radio>
+        <el-radio v-model="loginForm.lang"
+                  label="EN">EN</el-radio>
       </div>
       <button class="login"
               @click.prevent="handleLogin">Login</button>
@@ -25,22 +29,20 @@
 </template>
 
 <script>
-
+import { getLang } from '@/utils/cookie-util'
 export default {
   name: 'Login',
   data () {
-    // 
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        password: '111111',
+        lang: getLang() || 'CN'
       },
       passwordType: 'password',
       redirect: undefined,
       otherQuery: {}
     }
-  },
-  created () {
   },
   mounted () {
     if (this.loginForm.username === '') {
@@ -65,7 +67,8 @@ export default {
     handleLogin () {
       this.$store.dispatch('user/login', this.loginForm)
         .then(() => {
-          this.$router.push({ path: this.redirect || '/index', query: this.otherQuery })
+          this.$i18n.locale = this.loginForm.lang || 'CN'
+          this.$router.push({ path: this.redirect || '/home', query: this.otherQuery })
         })
         .catch((err) => {
           alert(err)
@@ -83,7 +86,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #login {
   width: 100%;
   height: 100%;
@@ -104,11 +107,11 @@ export default {
     text-align: center;
     background: rgba(#162948, 0.2);
     border-radius: 10px;
-    padding: 30px;
+    padding: 15px;
     h1 {
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       font-size: 26px;
-      color: #e6edef;
+      color: #fff;
     }
     .item {
       line-height: 55px;
@@ -121,9 +124,24 @@ export default {
         outline: none;
         text-indent: 10px;
       }
+      .el-radio {
+        color: #fff;
+        .el-radio__inner:hover {
+          border-color: #38393e;
+        }
+        &.is-checked {
+          .el-radio__inner {
+            border-color: #fff;
+            background: rgba(#e6edef, 0.5);
+          }
+          .el-radio__label {
+            font-weight: 600;
+            color: #38393e;
+          }
+        }
+      }
     }
     button.login {
-      margin-top: 20px;
       font-size: 18px;
       height: 40px;
       width: 100px;

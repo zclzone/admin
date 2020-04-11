@@ -1,6 +1,33 @@
 {
   "questions": [
     {
+      "Seq_No": 1,
+      "Question_Type": "A",
+      "Question_Desc": "请选择您的公司",
+      "Rid": "AFA662C0-C922-4E82-9822-9E3A7508D657",
+      "Answer_Desc": "A公司",
+      "Answer_No": "A",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 1,
+      "Question_Type": "A",
+      "Question_Desc": "请选择您的公司",
+      "Rid": "AFA662C0-C922-4E82-9822-9E3A7508D768",
+      "Answer_Desc": "B公司",
+      "Answer_No": "B",
+      "Visible_Default": "Y"
+    },
+    {
+      "Seq_No": 1,
+      "Question_Type": "A",
+      "Question_Desc": "请选择您的公司",
+      "Rid": "AFA662C0-C922-4E82-9822-9E3DE55D658",
+      "Answer_Desc": "C公司",
+      "Answer_No": "C",
+      "Visible_Default": "Y"
+    },
+    {
       "Seq_No": 2,
       "Question_Type": "B",
       "Question_Desc": "工号",
@@ -126,8 +153,8 @@
       "Question_Type": "C",
       "Question_Desc": "您是否有疑似症状",
       "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
-      "Answer_Desc": "气促",
-      "Answer_No": "D",
+      "Answer_Desc": "健康",
+      "Answer_No": "A",
       "Visible_Default": "Y"
     },
     {
@@ -135,8 +162,8 @@
       "Question_Type": "C",
       "Question_Desc": "您是否有疑似症状",
       "Rid": "D0C7B497-B622-41B7-9B52-1602D5264BC4",
-      "Answer_Desc": "健康",
-      "Answer_No": "A",
+      "Answer_Desc": "气促",
+      "Answer_No": "D",
       "Visible_Default": "Y"
     },
     {

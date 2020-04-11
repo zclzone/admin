@@ -1,14 +1,23 @@
 const defaultRoutes = [
   {
     path: '/',
-    redirect: '/index'
+    redirect: '/home'
   },
   {
-    path: '/index',
+    path: '/home',
     component: _ => import('@/views/index'),
     meta: {
       title: '首页'
-    }
+    },
+    children: [
+      {
+        path: '',
+        component: _ => import('@/views/index/default'),
+        meta: {
+          title: '首页'
+        }
+      }
+    ],
   },
   {
     path: '/login',

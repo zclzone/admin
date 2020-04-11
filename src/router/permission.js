@@ -1,7 +1,7 @@
 import router from './index'
 import store from '@/store'
 
-import { getToken } from '@/utils/cookie-util'
+import { getToken, setToken } from '@/utils/cookie-util'
 import getPageTitle from '@/utils/page-title'
 
 import { Message } from 'element-ui'
@@ -17,26 +17,22 @@ router.beforeEach(async (to, from, next) => {
 
   const token = getToken()
   if (token) {
+    setToken(token) //每次路由改变延长Cookie过期时间
     if (to.path === '/login') {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasRoles = store.getters.roles && store.getters.roles.length > 0
-      if (hasRoles) {
+      try {
+        const { authRoutes } = await store.dispatch('user/getInfo')
+        store.dispatch('permission/generateRoutes', authRoutes).then(rst => {
+          router.addRoutes(rst)  //动态添加路由
+        })
         next()
-      } else {
-        try {
-          const { roles, authRoutes } = await store.dispatch('user/getInfo')
-          store.dispatch('permission/generateRoutes', authRoutes).then(rst => {
-            router.addRoutes(rst)  //动态添加路由
-          })
-          next()
-        } catch (err) {
-          await store.dispatch('user/resetToken')
-          Message.error(err || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
-        }
+      } catch (err) {
+        await store.dispatch('user/resetToken')
+        Message.error(err || 'Has Error')
+        next(`/login?redirect=${to.path}`)
+        NProgress.done()
       }
     }
   } else {
