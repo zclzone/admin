@@ -2,8 +2,7 @@ import defaultRoutes from '@/router/default-routes'
 import accessRoutes from '@/router/access-routes'
 import { getLang } from '@/utils/cookie-util'
 
-const Lang = getLang()
-
+let lang = getLang()
 const state = {
   routes: [],
   addRoutes: []
@@ -18,6 +17,7 @@ const mutations = {
 
 const actions = {
   generateRoutes ({ commit }, authRoutes) {
+    lang = getLang()
     return new Promise(resolve => {
       const authPathList = authRoutes.map(route => {
         return { ...route, path: route.path.replace(/^\//, '') }
@@ -35,13 +35,13 @@ export function isAccessPath (route, authPathList, parentPath) {
   }
   const authPath = authPathList.find(item => item.path == route.path.replace(/^\//, ''))
   if (authPath) {
-    route.meta.title = (Lang === 'CN' && authPath.name || authPath.name_en) || authPath.name || route.meta.title
+    route.meta.title = (lang === 'CN' && authPath.name || authPath.name_en) || authPath.name || route.meta.title
     return true
   }
   if (parentPath) {
     const childAuthPath = authPathList.find(item => item.path == `${parentPath}/${route.path.replace(/^\//, '')}`)
     if (childAuthPath) {
-      route.meta.title = (Lang === 'CN' && childAuthPath.name || childAuthPath.name_en) || childAuthPath.name || route.meta.title
+      route.meta.title = (lang === 'CN' && childAuthPath.name || childAuthPath.name_en) || childAuthPath.name || route.meta.title
       return true
     }
   }
