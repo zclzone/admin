@@ -12,6 +12,12 @@ const routes = [
         view: _ => import('@/views/seal')
       },
       {
+        FunctionID: 'seal/:id',
+        FunctionName: '盖印管理',
+        view: _ => import('@/views/seal/detail'),
+        hidden: true
+      },
+      {
         FunctionID: 'function2',
         FunctionName: 'function2',
         view: _ => import('@/views/function2')
@@ -39,6 +45,7 @@ function createRoutes (routes) {
     let tempRoute = {
       path: `/${route.SysID}`,
       component: route.layout,
+      hidden: route.hide || false,
       meta: {
         title: route.SysName || '~'
       },
@@ -49,6 +56,7 @@ function createRoutes (routes) {
         tempRoute.children.push({
           path: child.FunctionID,
           component: child.view,
+          hidden: child.hidden || false,
           meta: {
             title: child.FunctionName || '~'
           }
@@ -76,19 +84,29 @@ export default createRoutes(routes)
 //     meta: {
 //       title: 'OA系统'
 //     },
-//     children: [{
-//       path: 'seal',
-//       component: _ => import('@/views/function1'),
-//       meta: {
-//         title: '印章盖印管理'
+//     children: [
+//       {
+//         path: 'seal',
+//         component: _ => import('@/views/seal'),
+//         meta: {
+//           title: '印章盖印管理'
+//         }
+//       },
+//       {
+//         path: 'seal/:id',
+//         component: _ => import('@/views/function2'),
+//         meta: {
+//           title: '印章盖印'
+//         }
+//       },
+//       {
+//         path: 'function2',
+//         component: _ => import('@/views/function2'),
+//         meta: {
+//           title: 'function2'
+//         }
 //       }
-//     }, {
-//       path: 'function2',
-//       component: _ => import('@/views/function2'),
-//       meta: {
-//         title: 'function2'
-//       }
-//     }]
+//     ]
 //   },
 //   {
 //     path: "/questionaire",
@@ -96,13 +114,15 @@ export default createRoutes(routes)
 //     meta: {
 //       title: '疫情调查'
 //     },
-//     children: [{
-//       path: 'index',
-//       component: _ => import('@/views/questionaire'),
-//       meta: {
-//         title: '疫情问卷'
+//     children: [
+//       {
+//         path: 'index',
+//         component: _ => import('@/views/questionaire'),
+//         meta: {
+//           title: '疫情问卷'
+//         }
 //       }
-//     }]
+//     ]
 //   },
 //   {
 //     path: '*',
@@ -110,3 +130,5 @@ export default createRoutes(routes)
 //     hidden: true
 //   },
 // ]
+
+// export default accessRoutes

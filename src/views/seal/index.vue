@@ -1,10 +1,30 @@
 <template>
   <div class="view">
+    <div class="btns">
+      <el-button type="primary"
+                 icon="el-icon-view"
+                 plain>
+        查看
+      </el-button>
+      <el-button type="success"
+                 icon="el-icon-plus"
+                 @click="add"
+                 plain>
+        新增
+      </el-button>
+      <el-button type="info"
+                 icon="el-icon-edit"
+                 plain>
+        编辑
+      </el-button>
+
+    </div>
+
     <el-table ref="multipleTable"
               :data="Seal_Stamped_Data"
               tooltip-effect="dark"
               style="width: 100%"
-              height="100%"
+              height="100% - 40"
               @selection-change="handleSelectionChange">
       <el-table-column type="selection"
                        width="55">
@@ -76,10 +96,11 @@ export default {
     handlePageChange (page) {
       this.currentPage = page
       this.getData(this.pageSize, this.currentPage)
+    },
+    add () {
+      this.$router.push('/oa/seal/add')
     }
   },
-  computed: {
-  }
 }
 </script>
 
@@ -88,6 +109,17 @@ export default {
   height: calc(100% - 35px);
   padding-bottom: 40px;
   position: relative;
+  .btns {
+    text-align: right;
+    height: 50px;
+    line-height: 50px;
+    .el-button {
+      padding: 5px;
+    }
+  }
+  .el-table {
+    height: calc(100% - 40px);
+  }
   .el-pagination {
     position: absolute;
     bottom: 0;

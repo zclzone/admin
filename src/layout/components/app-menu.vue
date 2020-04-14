@@ -39,16 +39,33 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath);
+    },
+    filterRoutes (routes) {
+      let routeList = []
+      for (const route of routes) {
+        if (!route.hidden) {
+          let tmp = {
+            path: route.path,
+            meta: { ...route.meta }
+          }
+          if (route.children) {
+            tmp.children = this.filterRoutes(route.children)
+          }
+          routeList.push(tmp)
+        }
+      }
+      return routeList
     }
   },
   mounted () {
   },
   computed: {
     ...mapState({
-      routes: state => state.permission.addRoutes.filter(route => {
-        return route.path !== '*' && route.path !== '/404' && route.path != '/'
-      })
+      addRoutes: state => state.permission.addRoutes
     }),
+    routes () {
+      return this.filterRoutes(this.addRoutes)
+    },
     active () {
       // return this.$route.path
       // const pathes = this.$route.path.replace(/^\//, '').split('/')

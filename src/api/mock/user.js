@@ -27,6 +27,11 @@ const users = {
         path: '/oa/seal'
       },
       {
+        name: '盖印管理',
+        name_en: 'Seal Manage',
+        path: '/oa/seal/:id'
+      },
+      {
         name: 'function2',
         path: '/oa/function2'
       },
