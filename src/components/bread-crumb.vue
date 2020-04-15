@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item to="/">{{ $t('message.home') }}</el-breadcrumb-item>
     <el-breadcrumb-item v-for="(item,index) in breadItems"
+                        :to="item.path"
                         :key="index">
       {{item.name}}
     </el-breadcrumb-item>

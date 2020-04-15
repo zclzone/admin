@@ -1,16 +1,16 @@
 <template>
   <div class="view">
     <div class="btns">
-      <el-button type="primary"
-                 icon="el-icon-view"
-                 plain>
-        查看
-      </el-button>
       <el-button type="success"
                  icon="el-icon-plus"
                  @click="add"
                  plain>
         新增
+      </el-button>
+      <el-button type="primary"
+                 icon="el-icon-view"
+                 plain>
+        查看
       </el-button>
       <el-button type="info"
                  icon="el-icon-edit"
@@ -110,7 +110,7 @@ export default {
   padding-bottom: 40px;
   position: relative;
   .btns {
-    text-align: right;
+    text-align: left;
     height: 50px;
     line-height: 50px;
     .el-button {

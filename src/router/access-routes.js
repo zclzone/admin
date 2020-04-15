@@ -4,6 +4,7 @@ const routes = [
   {
     SysID: 'oa',
     SysName: 'OA系统',
+    default: 'seal',
     layout: Home,
     children: [
       {
@@ -28,6 +29,7 @@ const routes = [
     SysID: 'questionaire',
     SysName: '疫情调查',
     layout: Home,
+    default: 'index',
     children: [
       {
         FunctionID: 'index',
@@ -45,6 +47,7 @@ function createRoutes (routes) {
     let tempRoute = {
       path: `/${route.SysID}`,
       component: route.layout,
+      redirect: `/${route.SysID}/${route.default}`,
       hidden: route.hide || false,
       meta: {
         title: route.SysName || '~'
@@ -70,6 +73,7 @@ function createRoutes (routes) {
     redirect: '/404',
     hidden: true
   })
+  console.log(accessRoutes);
   return accessRoutes
 }
 

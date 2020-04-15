@@ -24,22 +24,24 @@ export default {
       })
     }),
     breadItems () {
-      const pathes = this.$route.path.replace(/^\//, '').split('/')
+      let pathes = this.$route.path.replace(/^\//, '').split('/')
+      pathes.length -= 1
       let rootPath = ''
       let breadItems = []
-      let currentRoute = this.routes
+      let $routes = this.routes
       for (const path of pathes) {
-        for (let i = 0; i < currentRoute.length; i++) {
-          if (currentRoute[i].path.replace(/^\//, '') == path) {
-            breadItems.push({ path: `${rootPath}/${path}`, name: currentRoute[i].meta.title })
-            if (currentRoute[i].children) {
-              currentRoute = currentRoute[i].children
+        for (let i = 0; i < $routes.length; i++) {
+          if ($routes[i].path.replace(/^\//, '') == path) {
+            breadItems.push({ path: `${rootPath}/${path}`, name: $routes[i].meta.title })
+            if ($routes[i].children) {
+              $routes = $routes[i].children
               rootPath += `/${path}`
             }
             break
           }
         }
       }
+      breadItems.push({ path: this.$route.path, name: this.$route.meta.title })
       return breadItems
     }
   },
