@@ -1,4 +1,4 @@
-const { questions } = require('./questions.json')
+const { questions } = require('./data.json')
 const { provinces } = require('./cities.json')
 
 export default [

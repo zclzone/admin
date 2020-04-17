@@ -35,6 +35,11 @@ const routes = [
         FunctionID: 'index',
         FunctionName: '疫情问卷',
         view: _ => import('@/views/questionaire')
+      },
+      {
+        FunctionID: 'create',
+        FunctionName: '问卷维护',
+        view: _ => import('@/views/questionaire/questionaire-edit')
       }
     ]
   }
@@ -73,7 +78,6 @@ function createRoutes (routes) {
     redirect: '/404',
     hidden: true
   })
-  console.log(accessRoutes);
   return accessRoutes
 }
 

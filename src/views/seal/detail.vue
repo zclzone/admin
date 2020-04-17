@@ -5,17 +5,23 @@
 <script>
 export default {
   beforeRouteEnter (to, from, next) {
-    switch (to.params.id) {
+    console.log(to)
+    switch (to.query.action) {
       case 'add':
-        document.title = `${to.meta.title}-创建`
+        to.meta.title = `${to.meta.title}-创建`
+        document.title = to.meta.title
         break
       case 'edit':
-        document.title = `${to.meta.title}-编辑`
+        to.meta.title = `${to.meta.title}-编辑`
+        document.title = to.meta.title
         break
       default:
-        document.title = `${to.meta.title}-查看`
+        to.meta.title = `${to.meta.title}-查看`
+        document.title = to.meta.title
     }
     next()
-  }
+  },
+  mounted () {
+  },
 }
 </script>

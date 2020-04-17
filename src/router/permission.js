@@ -13,7 +13,9 @@ const whiteList = ['/login', '/auth-redirect']
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
   // set title
-  document.title = getPageTitle(to.meta.title)
+  if (!to.hidden) {
+    document.title = getPageTitle(to.meta.title)
+  }
 
   const token = getToken()
   if (token) {

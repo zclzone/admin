@@ -44,6 +44,11 @@ const users = {
         name: '疫情问卷',
         name_en: 'Disease Questionnaire',
         path: '/questionaire/index'
+      },
+      {
+        name: '问卷维护',
+        name_en: 'Questionnaire Maint',
+        path: '/questionaire/create'
       }
     ]
   },

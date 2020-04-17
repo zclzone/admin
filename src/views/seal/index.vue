@@ -98,7 +98,7 @@ export default {
       this.getData(this.pageSize, this.currentPage)
     },
     add () {
-      this.$router.push('/oa/seal/add')
+      this.$router.push({ path: `/oa/seal/new`, query: { action: 'add' } })
     }
   },
 }
@@ -106,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 .view {
-  height: calc(100% - 35px);
+  height: calc(100% - 20px);
   padding-bottom: 40px;
   position: relative;
   .btns {

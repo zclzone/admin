@@ -19,7 +19,6 @@ import './router/permission'
 // mock
 import './api/mock'
 
-
 Vue.config.productionTip = false
 
 new Vue({

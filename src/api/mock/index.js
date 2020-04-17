@@ -1,8 +1,8 @@
 import Mock from 'mockjs'
 
-import user from './user'
-import seal from './seal'
-import questionaire from './questionaire'
+import user from './user/index'
+import seal from './seal/index'
+import questionaire from './questionaire/index'
 
 const mocks = [
   ...user, ...seal, ...questionaire
