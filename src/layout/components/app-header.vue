@@ -1,7 +1,9 @@
 <template>
   <div class="header-container">
     <div class="logo">
-      <h2 v-t="{path:'message.projectName'}"></h2>
+      <router-link to="/">
+        <h2 v-t="{path:'message.projectName'}"></h2>
+      </router-link>
     </div>
     <div class="info">
       <el-dropdown @command="handleCommand"

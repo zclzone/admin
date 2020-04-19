@@ -70,17 +70,21 @@
         保存
       </el-button>
     </div>
-    <el-dialog title="新增问题类型选择"
+    <el-dialog title="问题类型"
                :visible.sync="showCreateQuesDialog"
-               @close="closeDialog(false)">
-      <el-select v-model="quesType"
-                 placeholder="问题类型">
-        <el-option v-for="item in questionsTypes"
-                   :key="item.type"
-                   :label="item.title"
-                   :value="item.type">
-        </el-option>
-      </el-select>
+               @close="closeDialog(false)"
+               width="300px"
+               center>
+      <div class="content">
+        <el-select v-model="quesType"
+                   placeholder="问题类型">
+          <el-option v-for="item in questionsTypes"
+                     :key="item.type"
+                     :label="item.title"
+                     :value="item.type">
+          </el-option>
+        </el-select>
+      </div>
       <div slot="footer"
            class="dialog-footer">
         <el-button type="primary"
@@ -96,7 +100,6 @@ import TypeB from './components/TypeB'
 import TypeC from './components/TypeC'
 import TypeD from './components/TypeD'
 import TypeE from './components/TypeE'
-import CreateQuesDialog from './components/create-ques-dialog'
 
 import { getCities } from '@/api/questionaire'
 
@@ -215,7 +218,7 @@ export default {
     }
   },
   components: {
-    TypeA, TypeB, TypeC, TypeD, TypeE, CreateQuesDialog
+    TypeA, TypeB, TypeC, TypeD, TypeE
   }
 }
 </script>
@@ -273,6 +276,11 @@ export default {
       font-size: 16px;
       font-weight: 600;
       padding: 8px;
+    }
+  }
+  .el-dialog__wrapper {
+    .content {
+      text-align: center;
     }
   }
 }

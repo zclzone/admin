@@ -95,14 +95,17 @@ export default {
   padding: 5px 5px 0;
   background: #e6edef;
   height: calc(100vh - 40px);
+  width: 100%;
   .el-menu {
     width: 100%;
+    overflow: auto;
     border-top: 1px solid #bbd0d6;
     border-left: 1px solid #bbd0d6;
     border-right: 1px solid #bbd0d6;
     min-height: calc(100vh - 45px);
     .el-menu-item {
-      width: 100% !important;
+      display: inline-block;
+      padding-right: 20px !important;
       min-width: 188px !important;
     }
     .el-submenu + .el-submenu {
