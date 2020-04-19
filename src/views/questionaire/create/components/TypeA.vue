@@ -17,15 +17,13 @@
                v-model="item.option_title">
 
       </div>
-      <el-button type="warning"
-                 icon="el-icon-minus"
+      <el-button icon="el-icon-minus"
                  v-show="showConfig"
                  title="删除选项"
                  @click="removeOption(index)"
                  round>
       </el-button>
-      <el-button type="primary"
-                 icon="el-icon-plus"
+      <el-button icon="el-icon-plus"
                  v-show="showConfig"
                  title="插入选项"
                  @click="insertOption(index)"
