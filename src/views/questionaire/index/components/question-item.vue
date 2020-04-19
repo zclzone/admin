@@ -1,5 +1,5 @@
 <template>
-  <div class="ques-item"
+  <div class="ques-item-container"
        v-show="isShow">
     <h3 class="title">{{`${question.Seq_No}. ${question.Question_Desc}`}}</h3>
     <component :is="question.component"
@@ -139,7 +139,7 @@ export default {
 </script>
 
 <style lang="scss">
-.ques-item {
+.ques-item-container {
   padding: 10px 0;
 
   h3 {

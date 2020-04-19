@@ -34,12 +34,12 @@ const routes = [
       {
         FunctionID: 'index',
         FunctionName: '疫情问卷',
-        view: _ => import('@/views/questionaire')
+        view: _ => import('@/views/questionaire/index')
       },
       {
         FunctionID: 'create',
         FunctionName: '问卷维护',
-        view: _ => import('@/views/questionaire/questionaire-edit')
+        view: _ => import('@/views/questionaire/create')
       }
     ]
   }
