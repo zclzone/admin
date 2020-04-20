@@ -74,12 +74,16 @@
                            :key="ruleIndex">{{rule.title}}</el-checkbox>
             </el-checkbox-group>
           </div>
-          <div class="relation">
-            <el-tag v-for="(relation,relationIndex) in item.relations"
-                    :key="relationIndex">{{relation.desc}}</el-tag>
+          <div class="relation"
+               v-show="index > 0">
+            <div class="relation-msg">
+              <el-tag v-for="(relation,relationIndex) in item.relations"
+                      :key="relationIndex">{{relation.desc}}</el-tag>
+            </div>
             <el-button type="primary"
                        icon="el-icon-plus"
-                       @click="addRelation(index)">
+                       @click="addRelation(index)"
+                       title="关联显示条件">
               添加关联
             </el-button>
           </div>
@@ -96,6 +100,27 @@
         保存
       </el-button>
     </div>
+    <el-dialog title="添加关联"
+               :visible.sync="showCreateRelationDialog"
+               @close="closeDialog(false)"
+               width="500px"
+               center>
+      <div class="content">
+        <el-select v-model="relationQue"
+                   placeholder="选择问题">
+          <el-option v-for="(item,index) in getRelationQues()"
+                     :key="index"
+                     :label="item.title"
+                     :value="index">
+          </el-option>
+        </el-select>
+      </div>
+      <div slot="footer"
+           class="dialog-footer">
+        <el-button type="primary"
+                   @click="closeDialog(true)">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -128,7 +153,9 @@ export default {
         { title: '数字', value: 'num' },
         { title: '手机号', value: 'tel' }
       ],
-      hoverCurrent: null
+      hoverCurrent: null,
+      showCreateRelationDialog: false,
+      relationQue: null
     }
   },
   mounted () {
@@ -252,8 +279,20 @@ export default {
         questions[index].relations = [{ relationQues: 1, value: '是', desc: '第1题值为是时显示' }]
       }
       this.$set(this.questionaire, "questions", questions)
+      this.showCreateRelationDialog = true
+      console.log(this.getRelationQues())
     },
     getRelationQues (index) {
+      let ques = []
+      for (let i = 0; i < index; i++) {
+        let currQue = this.questionaire.questions[i]
+        if (currQue.Type === 'TypeA' || currQue.Type === 'TypeC') {
+          ques.push(currQue)
+        }
+      }
+      return ques
+    },
+    closeDialog (isConfirm) {
 
     }
   },
@@ -318,6 +357,9 @@ export default {
       .ques-config {
         line-height: 30px;
         padding: 5px;
+      }
+      .el-tag {
+        margin: 5px;
       }
     }
   }
