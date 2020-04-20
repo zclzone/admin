@@ -1,13 +1,11 @@
 <template>
-  <el-input v-model="value"
-            clearable></el-input>
+  <el-input clearable></el-input>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      value: ''
     }
   },
 }

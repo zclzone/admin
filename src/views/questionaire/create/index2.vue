@@ -19,42 +19,34 @@
            @mouseleave="hoverCurrent = null"
            v-for="(item,index) in questionaire.questions"
            :key="index">
-        <div class="ques-title">
-          <span :class="{'seq': true,'require-mark': item.rules.includes('require')} ">{{index + 1 }}、</span>
+        <div class="ques-name">
+          <span class="seq">{{index + 1 }}、</span>
           <input type="text"
                  placeholder="请输入题目名称"
                  ref="quesTitle"
                  v-model="item.title">
-
-          <el-dropdown @command="handleTypeChange">
-            <span class="el-dropdown-link">问题类型
-              <i class="el-icon-caret-bottom"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-for="item in questionsTypes"
-                                :key="item.type"
-                                :command="{index,type:item.type }">{{item.title}}
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
           <el-button icon="el-icon-top"
+                     v-show="hoverCurrent === index"
                      title="上移"
                      @click="moveUp(index)"
                      :disabled="index === 0"
                      round>
           </el-button>
           <el-button icon="el-icon-bottom"
+                     v-show="hoverCurrent === index"
                      title="下移"
                      @click="moveDown(index)"
                      :disabled="index === questionaire.questions.length - 1"
                      round>
           </el-button>
           <el-button icon="el-icon-plus"
+                     v-show="hoverCurrent === index"
                      title="插入"
                      @click="insert(index)"
                      round>
           </el-button>
           <el-button icon="el-icon-minus"
+                     v-show="hoverCurrent === index"
                      title="删除"
                      @click="remove(index)"
                      round>
@@ -65,25 +57,7 @@
                    :options="item.options"
                    ref="ques">
         </component>
-        <div class="ques-config">
-          <div class="rules">
-            <el-checkbox-group v-model="item.rules">
-              <el-checkbox :label="rule.value"
-                           v-for="(rule,ruleIndex) in getRules(item.Type)"
-                           :disabled="checkRuleDisabled(item.rules,rule.value)"
-                           :key="ruleIndex">{{rule.title}}</el-checkbox>
-            </el-checkbox-group>
-          </div>
-          <div class="relation">
-            <el-tag v-for="(relation,relationIndex) in item.relations"
-                    :key="relationIndex">{{relation.desc}}</el-tag>
-            <el-button type="primary"
-                       icon="el-icon-plus"
-                       @click="addRelation(index)">
-              添加关联
-            </el-button>
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="submit"
@@ -96,6 +70,27 @@
         保存
       </el-button>
     </div>
+    <el-dialog title="问题类型"
+               :visible.sync="showCreateQuesDialog"
+               @close="closeDialog(false)"
+               width="300px"
+               center>
+      <div class="content">
+        <el-select v-model="quesType"
+                   placeholder="问题类型">
+          <el-option v-for="item in questionsTypes"
+                     :key="item.type"
+                     :label="item.title"
+                     :value="item.type">
+          </el-option>
+        </el-select>
+      </div>
+      <div slot="footer"
+           class="dialog-footer">
+        <el-button type="primary"
+                   @click="closeDialog(true)">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -123,138 +118,103 @@ export default {
         { type: 'TypeD', title: '日期选择题' },
         { type: 'TypeE', title: '籍贯选择题' }
       ],
-      rules: [
-        { title: '必填', value: 'require' },
-        { title: '数字', value: 'num' },
-        { title: '手机号', value: 'tel' }
-      ],
-      hoverCurrent: null
+      hoverCurrent: null,
+      showCreateQuesDialog: false,
+      quesType: ''
     }
   },
   mounted () {
     this.$refs.questionaireName.focus()
   },
   methods: {
-    addQuestions (Type, index) {
+    addQuestions (Type, currentQuesIndex) {
       if (!Type) return
       switch (Type) {
         case 'TypeA':
-          this.questionaire.questions.splice(index + 1, 0, {
+          this.questionaire.questions.splice(currentQuesIndex + 1, 0, {
             Type,
             title: '单选题',
             options: [
-              { option_title: '是', option_value: 'Y' },
-              { option_title: '否', option_value: 'N' }
-            ],
-            rules: [this.rules[0].value]
+              { option_title: '选项A', option_value: 'A' },
+              { option_title: '选项B', option_value: 'B' }
+            ]
           })
+          this.titleFocus(currentQuesIndex)
           break
         case 'TypeB':
-          this.questionaire.questions.splice(index + 1, 0, {
+          this.questionaire.questions.splice(currentQuesIndex + 1, 0, {
             Type,
-            title: '填空题',
-            options: [],
-            rules: [this.rules[0].value]
+            title: '填空题'
           })
+          this.titleFocus(currentQuesIndex)
           break
         case 'TypeC':
-          this.questionaire.questions.splice(index + 1, 0, {
+          this.questionaire.questions.splice(currentQuesIndex + 1, 0, {
             Type,
             title: '多选题',
             options: [
               { option_title: '选项A', option_value: 'A' },
               { option_title: '选项B', option_value: 'B' }
-            ],
-            rules: [this.rules[0].value]
+            ]
           })
+          this.titleFocus(currentQuesIndex)
           break
         case 'TypeD':
-          this.questionaire.questions.splice(index + 1, 0, {
+          this.questionaire.questions.splice(currentQuesIndex + 1, 0, {
             Type,
-            title: '什么时候',
-            options: [],
-            rules: [this.rules[0].value]
+            title: '什么时候'
           })
+          this.titleFocus(currentQuesIndex)
           break
         case 'TypeE':
           getCities().then(res => {
             const { provinces } = res.data
-            this.questionaire.questions.splice(index + 1, 0, {
+            this.questionaire.questions.splice(currentQuesIndex + 1, 0, {
               Type,
               title: '什么地方',
               options: {
                 provinces
-              },
-              rules: [this.rules[0].value]
+              }
             })
+            this.titleFocus(currentQuesIndex)
           })
           break
         default:
           break
       }
-      this.titleFocus(index)
     },
-    titleFocus (index) {
+    titleFocus (currentQuesIndex) {
       setTimeout(() => {
-        const quesTitle = this.$refs.quesTitle[index + 1]
+        const quesTitle = this.$refs.quesTitle[currentQuesIndex + 1]
         quesTitle && quesTitle.focus()
         quesTitle && quesTitle.select()
       }, 50)
     },
     moveUp (index) {
-      let questions = [...this.questionaire.questions]
-        ;[questions[index], questions[index - 1]] = [questions[index - 1], questions[index]]
-      this.$set(this.questionaire, "questions", questions)
-      // [this.questionaire.questions[index], this.questionaire.questions[index - 1]] = [this.questionaire.questions[index - 1], this.questionaire.questions[index]]
+      [this.questionaire.questions[index], this.questionaire.questions[index - 1]] = [this.questionaire.questions[index - 1], this.questionaire.questions[index]]
     },
     moveDown (index) {
-      let questions = [...this.questionaire.questions]
-        ;[questions[index], questions[index + 1]] = [questions[index + 1], questions[index]]
-      this.$set(this.questionaire, "questions", questions)
-      // [this.questionaire.questions[index], this.questionaire.questions[index + 1]] = [this.questionaire.questions[index + 1], this.questionaire.questions[index]]
+      [this.questionaire.questions[index], this.questionaire.questions[index + 1]] = [this.questionaire.questions[index + 1], this.questionaire.questions[index]]
     },
-    insert (index, Type) {
-      index = (index === null || index === undefined) && this.questionaire.questions.length - 1 || index
-      this.addQuestions(Type || 'TypeB', index)
+    insert (index) {
+      if (index === null || index === undefined) {
+        this.currentQuesIndex = this.questionaire.questions.length - 1
+      } else {
+        this.currentQuesIndex = index
+      }
+      this.showCreateQuesDialog = true
     },
     remove (index) {
       this.questionaire.questions.splice(index, 1)
     },
-    checkRuleDisabled (rules, currRule) {
-      if (currRule == 'num' && rules.includes('tel')) {
-        return true
+    closeDialog (isConfirm) {
+      this.showCreateQuesDialog = false
+      if (isConfirm) {
+        this.addQuestions(this.quesType, this.currentQuesIndex)
       }
-      if (currRule == 'tel' && rules.includes('num')) {
-        return true
-      }
-      return false
-    },
-    handleTypeChange (command) {
-      const { type, index } = command
-      this.questionaire.questions.splice(index, 1)
-      this.addQuestions(type, index - 1)
     },
     save () {
       console.log(this.questionaire)
-    },
-    getRules (Type) {
-      let rules = [this.rules[0]]
-      if (Type == 'TypeB') {
-        rules = this.rules
-      }
-      return rules
-    },
-    addRelation (index) {
-      let questions = [...this.questionaire.questions]
-      if (questions[index].relations) {
-        questions[index].relations.push({ relationQues: 1, value: '是', desc: '第1题值为是时显示' })
-      } else {
-        questions[index].relations = [{ relationQues: 1, value: '是', desc: '第1题值为是时显示' }]
-      }
-      this.$set(this.questionaire, "questions", questions)
-    },
-    getRelationQues (index) {
-
     }
   },
   components: {
@@ -271,6 +231,7 @@ export default {
   }
   .el-input {
     .el-input__inner {
+      height: 30px;
       max-width: 220px;
     }
   }
@@ -292,16 +253,9 @@ export default {
     }
     .ques-item {
       margin-bottom: 20px;
-      .ques-title {
+      .ques-name {
         font-size: 18px;
-        line-height: 30px;
         margin-bottom: 5px;
-        .require-mark::before {
-          content: "*";
-          color: red;
-          left: 0;
-          top: 0;
-        }
         input {
           min-width: 350px;
           height: 30px;
@@ -315,10 +269,6 @@ export default {
           }
         }
       }
-      .ques-config {
-        line-height: 30px;
-        padding: 5px;
-      }
     }
   }
   .submit {
@@ -328,9 +278,10 @@ export default {
       padding: 8px;
     }
   }
-  .el-dropdown {
-    cursor: pointer;
-    margin: 0 10px;
+  .el-dialog__wrapper {
+    .content {
+      text-align: center;
+    }
   }
 }
 </style>
