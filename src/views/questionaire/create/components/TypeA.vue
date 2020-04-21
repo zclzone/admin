@@ -13,6 +13,7 @@
                class="edit-input"
                :ref="`inputOption${index}`"
                @blur="editIndex = null"
+               @change="handleOptionChange"
                v-show="editIndex === index"
                v-model="item.option_title">
 
@@ -48,6 +49,10 @@ export default {
     options: {
       type: Array,
       default: []
+    },
+    Rid: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -64,23 +69,29 @@ export default {
         this.$refs[`inputOption${index}`][0].focus()
       }, 200);
     },
+    handleOptionChange () {
+      this.$emit('removeAllRelations', this.Rid)
+    },
     addOption () {
       this.radioOptions.push({
-        option_title: '新选项', option_value: 'A'
+        option_title: '新选项', option_value: '新选项'
       })
       this.$emit('input', this.radioOptions)
+      this.$emit('removeAllRelations', this.Rid)
     },
     removeOption (index) {
       if (this.radioOptions.length > 1) {
         this.radioOptions.splice(index, 1)
         this.$emit('input', this.radioOptions)
       }
+      this.$emit('removeAllRelations', this.Rid)
     },
     insertOption (index) {
       this.radioOptions.splice(index + 1, 0, {
-        option_title: '新选项', option_value: 'A'
+        option_title: '新选项', option_value: '新选项'
       })
       this.$emit('input', this.radioOptions)
+      this.$emit('removeAllRelations', this.Rid)
     }
   },
 }

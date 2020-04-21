@@ -30,15 +30,6 @@
                  round>
       </el-button>
     </div>
-    <!-- <div class="option-config"
-         v-show="showConfig">
-      <el-button type="success"
-                 icon="el-icon-plus"
-                 @click="addOption"
-                 plain>
-        添加选项
-      </el-button>
-    </div> -->
   </div>
 </template>
 
@@ -66,7 +57,7 @@ export default {
     },
     addOption () {
       this.checkBoxOptions.push({
-        option_title: '新选项', option_value: 'A'
+        option_title: '新选项', option_value: '新选项'
       })
       this.$emit('input', this.checkBoxOptions)
     },
@@ -78,7 +69,7 @@ export default {
     },
     insertOption (index) {
       this.checkBoxOptions.splice(index + 1, 0, {
-        option_title: '新选项', option_value: 'A'
+        option_title: '新选项', option_value: '新选项'
       })
       this.$emit('input', this.checkBoxOptions)
     }
