@@ -3,7 +3,7 @@ import store from '@/store'
 
 const api = axios.create({
   // baseURL: process.env.APP_BASE_API,
-  baseURL: 'http://122.51.46.57/',
+  baseURL: 'http://192.168.13.118/SurveyWCF_2/Service1.svc/GetFun1',
   timeout: 5000
 })
 

@@ -6,8 +6,9 @@
 export default {
   data () {
     return {
-      key: 'fafaf'
     }
   },
+  mounted () {
+  }
 }
 </script>

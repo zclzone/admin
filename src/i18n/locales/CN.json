@@ -4,5 +4,33 @@
     "selectLang": "选择语言",
     "projectName": "后台管理",
     "home": "首页"
+  },
+  "questionaire": {
+    "addQues": "添加问题",
+    "enterQuestionaireName": "请输入问卷名称",
+    "enterQuesName": "请输入题目名称",
+    "moveUp": "上移",
+    "moveDown": "下移",
+    "insert": "插入",
+    "remove": "移除",
+    "typeA": "单选题",
+    "typeB": "填空题",
+    "typeC": "多选题",
+    "typeD": "日期选择题",
+    "typeE": "籍贯选择题",
+    "yes": "是",
+    "no": "否",
+    "optionA": "选项A",
+    "optionB": "选项B",
+    "newOption": "新选项",
+    "required": "必填",
+    "number": "数字",
+    "tel": "手机号",
+    "ID": "身份证号",
+    "save": "保存",
+    "addJumpRules": "添加跳题规则",
+    "cancelJumpRules": "取消跳题",
+    "selected": "选中",
+    "jummRules1": "跳题条件（满足一个条件即可）:"
   }
 }

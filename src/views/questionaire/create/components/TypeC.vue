@@ -19,13 +19,13 @@
       </div>
       <el-button icon="el-icon-minus"
                  v-show="showConfig"
-                 title="删除选项"
+                 :title="$t('questionaire.remove')"
                  @click="removeOption(index)"
                  round>
       </el-button>
       <el-button icon="el-icon-plus"
                  v-show="showConfig"
-                 title="插入选项"
+                 :title="$t('questionaire.insert')"
                  @click="insertOption(index)"
                  round>
       </el-button>
@@ -57,7 +57,7 @@ export default {
     },
     addOption () {
       this.checkBoxOptions.push({
-        option_title: '新选项', option_value: '新选项'
+        option_title: this.$t('questionaire.newOption'), option_value: this.$t('questionaire.newOption'), Rid: this.guid()
       })
       this.$emit('input', this.checkBoxOptions)
     },
@@ -74,6 +74,11 @@ export default {
       this.$emit('input', this.checkBoxOptions)
     }
   },
+  watch: {
+    options (newValue, oldValue) {
+      this.checkBoxOptions = newValue
+    }
+  }
 }
 </script>
 
@@ -81,6 +86,7 @@ export default {
 .type-b {
   .check-box-option {
     display: inline-block;
+    height: 20px;
     margin: 5px 0;
     .el-checkbox {
       min-width: 300px;

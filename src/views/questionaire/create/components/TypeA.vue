@@ -3,11 +3,11 @@
        @mouseenter="showConfig = true"
        @mouseleave="showConfig = false">
     <div v-for="(item,index) in radioOptions"
-         :key="index">
+         :key="item.Rid">
       <div class="radio-option"
            @click.prevent="editOption(index)">
         <el-radio v-show="editIndex !== index"
-                  :label="item.option_value">{{item.option_title}}</el-radio>
+                  :label="item.option_title">{{item.option_title}}</el-radio>
 
         <input type="text"
                class="edit-input"
@@ -20,26 +20,17 @@
       </div>
       <el-button icon="el-icon-minus"
                  v-show="showConfig"
-                 title="删除选项"
+                 :title="$t('questionaire.remove')"
                  @click="removeOption(index)"
                  round>
       </el-button>
       <el-button icon="el-icon-plus"
                  v-show="showConfig"
-                 title="插入选项"
+                 :title="$t('questionaire.insert')"
                  @click="insertOption(index)"
                  round>
       </el-button>
     </div>
-    <!-- <div class="option-config"
-         v-show="showConfig">
-      <el-button type="success"
-                 icon="el-icon-plus"
-                 @click="addOption"
-                 plain>
-        添加选项
-      </el-button>
-    </div> -->
   </div>
 </template>
 
@@ -72,13 +63,6 @@ export default {
     handleOptionChange () {
       this.$emit('removeAllRelations', this.Rid)
     },
-    addOption () {
-      this.radioOptions.push({
-        option_title: '新选项', option_value: '新选项'
-      })
-      this.$emit('input', this.radioOptions)
-      this.$emit('removeAllRelations', this.Rid)
-    },
     removeOption (index) {
       if (this.radioOptions.length > 1) {
         this.radioOptions.splice(index, 1)
@@ -88,12 +72,17 @@ export default {
     },
     insertOption (index) {
       this.radioOptions.splice(index + 1, 0, {
-        option_title: '新选项', option_value: '新选项'
+        option_title: this.$t('questionaire.newOption'), option_value: this.$t('questionaire.newOption'), Rid: this.guid()
       })
       this.$emit('input', this.radioOptions)
       this.$emit('removeAllRelations', this.Rid)
     }
   },
+  watch: {
+    options (newValue, oldValue) {
+      this.radioOptions = newValue
+    }
+  }
 }
 </script>
 
@@ -101,6 +90,7 @@ export default {
 .type-a {
   .radio-option {
     display: inline-block;
+    height: 20px;
     margin: 5px 0;
     .el-radio {
       min-width: 300px;

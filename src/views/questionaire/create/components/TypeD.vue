@@ -2,8 +2,7 @@
   <div>
     <el-date-picker type="date"
                     value-format="yyyy-MM-dd"
-                    v-model="value"
-                    placeholder="选择日期">
+                    v-model="value">
     </el-date-picker>
   </div>
 </template>

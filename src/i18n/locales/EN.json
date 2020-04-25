@@ -4,5 +4,33 @@
     "selectLang": "Languages",
     "projectName": "Admin",
     "home": "Home"
+  },
+  "questionaire": {
+    "addQues": "Add Question",
+    "enterQuestionaireName": "Please enter the questionaire name",
+    "enterQuesName": "Please enter the question name",
+    "moveUp": "move up",
+    "moveDown": "move down",
+    "insert": "insert",
+    "remove": "remove",
+    "typeA": "single answer",
+    "typeB": " fill in the blank answer",
+    "typeC": "multiple choice answer",
+    "typeD": "date answer",
+    "typeE": "address answer",
+    "yes": "Yes",
+    "no": "No",
+    "optionA": "option A",
+    "optionB": "option B",
+    "newOption": "new option",
+    "required": "required",
+    "number": "number",
+    "tel": "cellphone",
+    "ID": "ID number",
+    "save": "Save",
+    "addJumpRules": "Add skip questions rules",
+    "cancelJumpRules": "Cancel skip questions",
+    "selected": "selected",
+    "jummRules1": "Jump rules(One condition is satisfied):"
   }
 }
